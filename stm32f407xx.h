@@ -213,7 +213,7 @@ typedef struct
  * Sysconfig adress and macro
  */
 #define SYSCFG_BASEADDR		(APB2PERIPH_BASEADDR + 0x3800)
-#define SYSCFG				((SYSCFG_RegDef_t*)SYSCFG_BASEADDR)
+#define SYSCFG				    ((SYSCFG_RegDef_t*)SYSCFG_BASEADDR)
 
 /*
  * Clock Enable and Disable macros for SYSCFG

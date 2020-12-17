@@ -1,7 +1,7 @@
 /*
  * main.c
  *  Created on: 17.05.2020
- *      Author: Josh
+ * Author: Josh
  * 
  * Basic programm to show functionality of gpio_driver and interrupt routine
  * LED lightup pattern similar to traffic lights

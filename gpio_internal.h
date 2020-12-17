@@ -2,8 +2,8 @@
  * gpio_internal.h
  *
  *  Created on: 17.05.2020
- *      Author: Josh
- * Pin numbers and LED colors are matched to STM32F407G-DISC1 discovery board
+ *  Author: Josh
+ *  Pin numbers and LED colors are matched to STM32F407G-DISC1 discovery board
  */
 
 #ifndef INC_GPIO_INTERNAL_H_

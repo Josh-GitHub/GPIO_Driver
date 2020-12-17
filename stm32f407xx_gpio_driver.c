@@ -8,38 +8,46 @@ void GPIO_PeriClockControl(GPIO_RegDef_t *pGPIOx, uint8_t EnorDi)
 {
 	if(EnorDi == ENABLE)
 	{
-			  if (pGPIOx == GPIOA)
+		if (pGPIOx == GPIOA)
 		{
 			GPIOA_PCLK_EN();
-		}else if (pGPIOx == GPIOB)
+		}
+		else if (pGPIOx == GPIOB)
 		{
 			GPIOB_PCLK_EN();
-		}else if (pGPIOx == GPIOC)
+		}
+		else if (pGPIOx == GPIOC)
 		{
 			GPIOC_PCLK_EN();
-		}else if (pGPIOx == GPIOD)
+		}
+		else if (pGPIOx == GPIOD)
 		{
 			GPIOD_PCLK_EN();
-		}else if (pGPIOx == GPIOE)
+		}
+		else if (pGPIOx == GPIOE)
 		{
 			GPIOE_PCLK_EN();
-		}else if (pGPIOx == GPIOF)
+		}
+		else if (pGPIOx == GPIOF)
 		{
 			GPIOF_PCLK_EN();
-		}else if (pGPIOx == GPIOG)
+		}
+		else if (pGPIOx == GPIOG)
 		{
 			GPIOG_PCLK_EN();
-		}else if (pGPIOx == GPIOH)
+		}
+		else if (pGPIOx == GPIOH)
 		{
 			GPIOH_PCLK_EN();
-		}else if (pGPIOx == GPIOI)
+		}
+		else if (pGPIOx == GPIOI)
 		{
 			GPIOI_PCLK_EN();
 		}
 	}
 	else
 	{
-			  if (pGPIOx == GPIOA)
+		if (pGPIOx == GPIOA)
 		{
 			GPIOA_PCLK_DI();
 		}else if (pGPIOx == GPIOB)
@@ -81,11 +89,14 @@ void GPIO_Init(GPIO_Handle_t *pGPIOHandle)
 
 
 	 //Configurate PIN in INPUT or OUTPUT mode
-	 if(pGPIOHandle->GPIO_PinConfig.GPIO_PinMode <= GPIO_MODE_ANALOG) {
+	 if(pGPIOHandle->GPIO_PinConfig.GPIO_PinMode <= GPIO_MODE_ANALOG) 
+	 {
 		 // Normal Pin Mode
 		pGPIOHandle->pGPIOx->MODE_REG &= ~(0b11 << (pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber *2));
 		pGPIOHandle->pGPIOx->MODE_REG |= (pGPIOHandle->GPIO_PinConfig.GPIO_PinMode << (pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber *2));
-	 }else{
+	 }
+	 else
+	 {
 		SYSCFG_PCLK_EN();
 	    // IRQ-Mode
 		pGPIOHandle->pGPIOx->MODE_REG &= ~(0b11 << (pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber *2)); //reset PIN as Input
@@ -93,13 +104,18 @@ void GPIO_Init(GPIO_Handle_t *pGPIOHandle)
 		if((pGPIOHandle->GPIO_PinConfig.GPIO_PinMode == GPIO_MODE_IT_FT) || (pGPIOHandle->GPIO_PinConfig.GPIO_PinMode == GPIO_MODE_IT_RFT))
 		{//Falling Edge Trigger
 			EXTI->FTSR |= (0b1 << pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);
-		}else{
+		}
+		else
+		{
 			EXTI->FTSR &= ~(0b1 << pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);
 		}
+
 		if((pGPIOHandle->GPIO_PinConfig.GPIO_PinMode == GPIO_MODE_IT_RT) || (pGPIOHandle->GPIO_PinConfig.GPIO_PinMode == GPIO_MODE_IT_RFT))
 		{//Rising Edge Trigger
 			EXTI->RTSR |= (0b1 << pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);
-		}else{
+		}
+		else
+		{
 			EXTI->RTSR &= ~(0b1 << pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);
 		}
 
@@ -109,8 +125,7 @@ void GPIO_Init(GPIO_Handle_t *pGPIOHandle)
 
 		// 3. Activation of EXTI Interrupt handler in IMR-Register
 		EXTI->IMR |= (ENABLE << pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);
-		 
-	 }
+	}
 
 	 //Configuration of Output-Speeds
 	 pGPIOHandle->pGPIOx->OUTPUT_SPEED &= ~(0b11 << (pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber *2));
@@ -129,28 +144,36 @@ void GPIO_DeInit(GPIO_RegDef_t *pGPIOx)
 	if(pGPIOx == GPIOA)
 	{
 		GPIOA_REG_RESET();
-	}else if (pGPIOx == GPIOB)
+	}
+	else if (pGPIOx == GPIOB)
 	{
 		GPIOB_REG_RESET();
-	}else if (pGPIOx == GPIOC)
+	}
+	else if (pGPIOx == GPIOC)
 	{
 		GPIOC_REG_RESET();
-	}else if (pGPIOx == GPIOD)
+	}
+	else if (pGPIOx == GPIOD)
 	{
 		GPIOD_REG_RESET();
-	}else if (pGPIOx == GPIOE)
+	}
+	else if (pGPIOx == GPIOE)
 	{
 		GPIOE_REG_RESET();
-	}else if (pGPIOx == GPIOF)
+	}
+	else if (pGPIOx == GPIOF)
 	{
 		GPIOF_REG_RESET();
-	}else if (pGPIOx == GPIOG)
+	}
+	else if (pGPIOx == GPIOG)
 	{
 		GPIOG_REG_RESET();
-	}else if (pGPIOx == GPIOH)
+	}
+	else if (pGPIOx == GPIOH)
 	{
 		GPIOH_REG_RESET();
-	}else if (pGPIOx == GPIOI)
+	}
+	else if (pGPIOx == GPIOI)
 	{
 		GPIOI_REG_RESET();
 	}
